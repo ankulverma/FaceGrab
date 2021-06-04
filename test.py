@@ -2,14 +2,14 @@ import cv2
 import numpy as np
 import face_recognition
 import os
-from datetime import datetime
+import datetime
 
 path = 'ImageSourceDirectory'
 images = []
 classRollnos = []
 myList = os.listdir(path)
 print(myList)
-
+camname = { 0 :"Webcam", 1 : "Living Room" }
 for cl in myList:
     curImg = cv2.imread(f'{path}/{cl}')
     images.append(curImg)
@@ -42,10 +42,10 @@ def timelocated(name, cap):
                 break
 
         if res == False and count < 4:
-            now = datetime.now()
-            dtString = now.strftime('%H:%M:%S')
-            f.writelines(f'\n{name}  ,  {dtString}  ,  {str(caplist.get(cap))} ')
-
+            noww = datetime.datetime.now()
+            datenow = noww.strftime('%Y-%m-%d')
+            timenow = noww.strftime('%H:%M:%S')
+            f.writelines(f'\n{name}  ,  {datenow} , {timenow}   , {camname.get(caplist.get(cap))}')
 
 encodeListKnown = findEncodings(images)
 print("Encoding Complete")
@@ -70,9 +70,14 @@ print(getcam)
 
 for value in getcam:
 
-    current = cv2.VideoCapture(value)
-    caplist[current] = value
+    current = cv2.VideoCapture(value,cv2.CAP_DSHOW)
+    if current is None or not current.isOpened():
+        print('Warning: unable to open video source: ', value)
+    else:
+        caplist[current] = value
 print(caplist)
+
+
 # The above code generates a dictionary with key as the name of the current
 # stream of video capture with the index from getcam as a value
 # the key <VideoCapture 0000017290F2F3B0> is used in the below code as the actual stream
@@ -85,7 +90,7 @@ while True:
     # cv2.imshow('Camera 1', cap0.read()[1])
     # cv2.imshow('Camera' , cap1.read()[1])
 
-    for cap in caplist:
+    for cap in caplist :
 
         # while True:
 
