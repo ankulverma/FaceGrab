@@ -1,14 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_NotFound(object):
-
-    def openWindow(self):
-        from Search import Ui_SearchPage
-        self.window = QtWidgets.QDialog()
-        self.ui = Ui_SearchPage()
-        self.ui.setupUi(self.window)
-        self.window.show()
-
+    
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
@@ -55,8 +48,6 @@ class Ui_NotFound(object):
 "")
         self.okButton.setObjectName("okButton")
         self.okButton.clicked.connect(Dialog.close)
-        self.okButton.clicked.connect(self.openWindow)
-
 
         self.label_bg = QtWidgets.QLabel(Dialog)
         self.label_bg.setGeometry(QtCore.QRect(0, 0, 400, 300))
