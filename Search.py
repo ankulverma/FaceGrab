@@ -1,18 +1,39 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QRegExp
 from PyQt5.QtGui import QRegExpValidator
+import firebasedb
 
 class Ui_SearchPage(object):
+    global name
+    global id
+    name, id = "", ""
+
+    def openNotFound(self):
+        from NotFound import Ui_NotFound
+        self.window = QtWidgets.QDialog()
+        self.ui = Ui_NotFound()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+    def openResult(self):
+        from Result import Ui_ResultPage
+        self.window = QtWidgets.QDialog()
+        self.ui = Ui_ResultPage()
+        self.ui.setupUi(self.window)
+        self.window.show()
 
     def searchFunc(self):
-
-        self.text_name = self.text_name.text()
-        self.text_id = self.text_id.text()
+        name = self.text_name.text()
+        id = self.text_id.text()
+        print(name,id)
         print("[Info Entered]")
+        val = firebasedb.returnValues()
+        if val:
+            self.openResult()
+        else:
+            self.openNotFound()
 
     def setupUi(self, Dialog):
-        from Result import Ui_ResultPage
-        from NotFound import Ui_NotFound
         Dialog.setObjectName("Dialog")
         Dialog.resize(700, 700)
         Dialog.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -47,8 +68,8 @@ class Ui_SearchPage(object):
         self.text_name.setGeometry(QtCore.QRect(380, 440, 113, 22))
         self.text_name.setObjectName("text_name")
 
-        self.text_name.setPlaceholderText("Full Name")
-        validate_name = QRegExpValidator(QRegExp(r"^[a-z\" \"]*$"))
+        self.text_name.setPlaceholderText("ex: PRIYANKA RAI")
+        validate_name = QRegExpValidator(QRegExp(r"^[A-Z\" \"]*$"))
         self.text_name.setValidator(validate_name)
 
         self.label_5 = QtWidgets.QLabel(Dialog)
@@ -89,7 +110,7 @@ class Ui_SearchPage(object):
         self.text_id = QtWidgets.QLineEdit(Dialog)
         self.text_id.setGeometry(QtCore.QRect(380, 480, 113, 22))
         self.text_id.setObjectName("text_id")
-        self.text_id.setPlaceholderText("Enter ID")
+        self.text_id.setPlaceholderText("ex: 0206cs181199")
         validate_id = QRegExpValidator(QRegExp(r'[0-9a-z]{12}'))
         self.text_id.setValidator(validate_id)
 

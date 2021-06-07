@@ -4,6 +4,7 @@ import face_recognition
 import os
 import datetime
 import pyrebase
+import Search
 
 firebaseConfig = {
     "apiKey": "AIzaSyAGwaYIE3eTwWEkNp_QvmvHpcvUEAvGiIw",
@@ -14,16 +15,15 @@ firebaseConfig = {
     "storageBucket": "facegrab-c82ff.appspot.com",
     "messagingSenderId": "414897340300",
     "appId": "1:414897340300:web:39698616f4a6c951fca0a9",
-    "measurementId": "G-0F42EJJR32"
+    "measurementId": "G-0F42EJJR32",
+    "serviceAccount": "facegrabServiceKey.json"
 }
 firebase = pyrebase.initialize_app(firebaseConfig)
 
 db = firebase.database()
 storage=firebase.storage()
 
-path_on_firebase = "/ImageSourceDirectory"
-path = 'ImageSourceDirectory'
-
+path='ImageSourceDirectory'
 images = []
 classRollnos = []
 myList = os.listdir(path)
