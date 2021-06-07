@@ -4,7 +4,7 @@ import face_recognition
 import os
 import datetime
 
-path = 'ImageSourceDirectory'
+path = 'Faces'
 images = []
 classRollnos = []
 myList = os.listdir(path)
