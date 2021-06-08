@@ -6,16 +6,16 @@ import datetime
 import pyrebase
 
 firebaseConfig = {
-    "apiKey": "AIzaSyAGwaYIE3eTwWEkNp_QvmvHpcvUEAvGiIw",
-    "storageURL": "gs://facegrab-c82ff.appspot.com/",
-    "databaseURL": "https://facegrab-c82ff-default-rtdb.asia-southeast1.firebasedatabase.app/",
-    "authDomain": "facegrab-c82ff.firebaseapp.com",
-    "projectId": "facegrab-c82ff",
-    "storageBucket": "facegrab-c82ff.appspot.com",
-    "messagingSenderId": "414897340300",
-    "appId": "1:414897340300:web:39698616f4a6c951fca0a9",
-    "measurementId": "G-0F42EJJR32",
-    "serviceAccount": "facegrabServiceKey.json"
+    "apiKey": " ",
+    "storageURL": " ",
+    "databaseURL": " ",
+    "authDomain": " ",
+    "projectId": " ",
+    "storageBucket": " ",
+    "messagingSenderId": " ",
+    "appId": " ",
+    "measurementId": " ",
+    "serviceAccount": " "
 }
 firebase = pyrebase.initialize_app(firebaseConfig)
 
@@ -26,13 +26,13 @@ path='ImageSourceDirectory'
 images = []
 classRollnos = []
 myList = os.listdir(path)
-camname = { 0 :"Local Place", 1 : "Remote Place" }
+camname = { 0 :"ENTRANCE", 1 : "ADMIN BLOCK" , 2 : "LOBBY", 3 : "CAFETERIA" , 4 : "CONTROL CENTRE" , 5 : "AMPHITHEATRE" }
 
 for cl in myList:
     curImg = cv2.imread(f'{path}/{cl}')
     images.append(curImg)
     classRollnos.append(os.path.splitext(cl)[0])
-print("[INFO: ImageSourceDirectory","Count=",len(myList),",ID's=",classRollnos,"]")
+#print("[INFO: ImageSourceDirectory","Count=",len(myList),",ID's=",classRollnos,"]")
 
 def findEncodings(images):
     encodeList = []
@@ -78,7 +78,7 @@ def timelocated(name, cap):
         val =False
 
 encodeListKnown = findEncodings(images)
-print("[INFO: Encodings Completed]")
+#print("[INFO: Encodings Completed]")
 
 index = 0  # starting index fo cameras : 0 being the webcam
 getcam = []  # empty list to store camera indexing
@@ -95,7 +95,7 @@ while True:
 for value in getcam:
     current = cv2.VideoCapture(value)
     caplist[current] = value
-print("[INFO:",caplist,"]")
+#print("[INFO:",caplist,"]")
 
 # The above code generates a dictionary with key as the name of the current
 # stream of video capture with the index from getcam as a value
@@ -121,17 +121,16 @@ while True:
 
             if matches[matchIndex]:
                 name = classRollnos[matchIndex]
-                cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
-                y = top - 15 if top - 15 > 15 else top + 15
-                cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,0.75, (0, 255, 0), 2)
+                #cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
+                #y = top - 15 if top - 15 > 15 else top + 15
+                #cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,0.75, (0, 255, 0), 2)
                 timelocated(name, cap)
 
-            else:
-                name = "Unknown"
-                cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
-                y = top - 15 if top - 15 > 15 else top + 15
-                cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,0.75, (0, 255, 0), 2)
+            #else:
+                #name = "Unknown"
+                #cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
+                #y = top - 15 if top - 15 > 15 else top + 15
+                #cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,0.75, (0, 255, 0), 2)
 
-        cv2.imshow(str(caplist.get(cap)), img)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+        #cv2.imshow(str(caplist.get(cap)), img)
+        #cv2.waitKey(1)

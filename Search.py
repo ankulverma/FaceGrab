@@ -1,22 +1,20 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QRegExp
 from PyQt5.QtGui import QRegExpValidator
 import pyrebase
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 
-
 firebaseConfig = {
-    "apiKey": "AIzaSyAGwaYIE3eTwWEkNp_QvmvHpcvUEAvGiIw",
-    "storageURL": "gs://facegrab-c82ff.appspot.com/",
-    "databaseURL": "https://facegrab-c82ff-default-rtdb.asia-southeast1.firebasedatabase.app/",
-    "authDomain": "facegrab-c82ff.firebaseapp.com",
-    "projectId": "facegrab-c82ff",
-    "storageBucket": "facegrab-c82ff.appspot.com",
-    "messagingSenderId": "414897340300",
-    "appId": "1:414897340300:web:39698616f4a6c951fca0a9",
-    "measurementId": "G-0F42EJJR32",
-     "serviceAccount": "facegrabServiceKey.json"
+    "apiKey": " ",
+    "storageURL": " ",
+    "databaseURL": " ",
+    "authDomain": " ",
+    "projectId": " ",
+    "storageBucket": " ",
+    "messagingSenderId": " ",
+    "appId": " ",
+    "measurementId": " ",
+    "serviceAccount": " "
 }
 
 firebase = pyrebase.initialize_app(firebaseConfig)
@@ -37,26 +35,27 @@ class Ui_SearchPage(object):
         result = db.child("csvTable").get()
         for res in result.each():
             if res.key() == id:
+                print("openresult")
                 self.result_name=res.val()['Name']
-                self.result_date=res.val()['Location'][1]
                 self.result_loc=res.val()['Location'][0]
+                self.result_date = res.val()['Location'][1]
                 self.result_time=res.val()['Location'][2]
                 self.result_cam_id=res.val()['Location'][3]
 
         self.window = QtWidgets.QDialog()
         self.ui = Ui_ResultPage()
-        self.ui.setupUi(self.window,self.result_name,self.result_date,self.result_time,self.result_loc,self.result_cam_id)
+        print("Win Created")
+        print(id)
+        self.ui.setupUi(self.window,self.result_name,self.result_date,self.result_time,self.result_loc,self.result_cam_id ,id)
+        print("setup ui called")
         self.window.show()
 
     def searchFunc(self):
         import firebasedb
         name = self.text_name.text()
         id = self.text_id.text()
-        print(name, id)
-        print("[Info Entered]")
         val = firebasedb.returnValues(id)
         if val:
-
             self.openResult(id)
         else:
             self.openNotFound()
@@ -93,10 +92,10 @@ class Ui_SearchPage(object):
         self.search.clicked.connect(self.searchFunc)
 
         self.text_name = QtWidgets.QLineEdit(Dialog)
-        self.text_name.setGeometry(QtCore.QRect(380, 440, 113, 22))
+        self.text_name.setGeometry(QtCore.QRect(380, 440, 140, 22))
         self.text_name.setObjectName("text_name")
 
-        self.text_name.setPlaceholderText("ex: PRIYANKA RAI")
+        self.text_name.setPlaceholderText("ex: PRIYANSH VERMA")
         validate_name = QRegExpValidator(QRegExp(r"^[A-Z\" \"]*$"))
         self.text_name.setValidator(validate_name)
 
@@ -136,9 +135,9 @@ class Ui_SearchPage(object):
         self.label_1.setStyleSheet("color: rgb(9, 13, 84);")
         self.label_1.setObjectName("label_1")
         self.text_id = QtWidgets.QLineEdit(Dialog)
-        self.text_id.setGeometry(QtCore.QRect(380, 480, 113, 22))
+        self.text_id.setGeometry(QtCore.QRect(380, 480, 140, 22))
         self.text_id.setObjectName("text_id")
-        self.text_id.setPlaceholderText("ex: 0206cs181199")
+        self.text_id.setPlaceholderText("ex: 0206cs181118")
         validate_id = QRegExpValidator(QRegExp(r'[0-9a-z]{12}'))
         self.text_id.setValidator(validate_id)
 
