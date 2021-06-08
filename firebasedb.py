@@ -1,19 +1,16 @@
 import pyrebase
-import urllib
-import sys
-
 
 firebaseConfig = {
-    "apiKey": "AIzaSyAGwaYIE3eTwWEkNp_QvmvHpcvUEAvGiIw",
-    "storageURL": "gs://facegrab-c82ff.appspot.com/",
-    "databaseURL": "https://facegrab-c82ff-default-rtdb.asia-southeast1.firebasedatabase.app/",
-    "authDomain": "facegrab-c82ff.firebaseapp.com",
-    "projectId": "facegrab-c82ff",
-    "storageBucket": "facegrab-c82ff.appspot.com",
-    "messagingSenderId": "414897340300",
-    "appId": "1:414897340300:web:39698616f4a6c951fca0a9",
-    "measurementId": "G-0F42EJJR32",
-    "serviceAccount": "facegrabServiceKey.json"
+    "apiKey": " ",
+    "storageURL": " ",
+    "databaseURL": " ",
+    "authDomain": " ",
+    "projectId": " ",
+    "storageBucket": " ",
+    "messagingSenderId": " ",
+    "appId": " ",
+    "measurementId": " ",
+    "serviceAccount": " "
 }
 
 firebase = pyrebase.initialize_app(firebaseConfig)
@@ -31,15 +28,11 @@ storage = firebase.storage()
 #    except:
 #       print('Images Downloaded')
 
-#download
-#photo_download = input("enter the name of the file to be downloaded : ")
-#storage.child("ImageSourceDirectory").child(photo_download).download("",photo_download)
-#storage.child("ImageSourceDirectory").child(photo_download).download(filename="umeed",path=os.path.basename(photo_download))
+# download photo_download = input("enter the name of the file to be downloaded : ") storage.child(
+# "ImageSourceDirectory").child(photo_download).download("",photo_download) storage.child(
+# "ImageSourceDirectory").child(photo_download).download(filename="umeed",path=os.path.basename(photo_download))
 
-#nai
-#RETURN VALUE TO SEARCH AND RESULT PAGE
-
-
+#RETURN VALUE TO SEARCH
 
 from Search import *
 def returnValues(id):
@@ -50,6 +43,9 @@ def returnValues(id):
             flag = True
     return flag
 
+#result = db.child("csvTable").get()
+#for res in result.each():
+#    db.child("csvTable").remove()
 
 
 # INSERT DATA db

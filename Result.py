@@ -10,7 +10,8 @@ class Ui_ResultPage(object):
         self.ui.setupUi(self.window)
         self.window.show()
 
-    def setupUi(self, Dialog,name,date,time,loc,cam_id):
+    def setupUi(self, Dialog,name,date,time,loc,cam_id,id):
+
         Dialog.setObjectName("Dialog")
         Dialog.resize(700, 700)
         Dialog.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -87,7 +88,6 @@ class Ui_ResultPage(object):
 
         self.exit.setObjectName("exit")
         self.exit.clicked.connect(Dialog.close)
-
         self.result_cam_id = QtWidgets.QLabel(Dialog)
         self.result_cam_id.setGeometry(QtCore.QRect(190, 480, 161, 16))
         font = QtGui.QFont()
@@ -145,8 +145,13 @@ class Ui_ResultPage(object):
         self.result_time.setFont(font)
         self.result_time.setObjectName("result_time")
         self.result_time.setText(time)
-        self.result_photo = QtWidgets.QGraphicsView(Dialog)
+        self.result_photo = QtWidgets.QLabel(Dialog)
         self.result_photo.setGeometry(QtCore.QRect(230, 250, 201, 191))
+        self.result_photo.setText("")
+        img = "ImageSourceDirectory/" + id + ".jpg"
+        self.result_photo.setPixmap(QtGui.QPixmap(img))
+        self.result_photo.setScaledContents(True)
+
         self.result_photo.setObjectName("result_photo")
         self.result_loc = QtWidgets.QLabel(Dialog)
         self.result_loc.setGeometry(QtCore.QRect(190, 520, 161, 16))
