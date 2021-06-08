@@ -4,7 +4,6 @@ import face_recognition
 import os
 import datetime
 import pyrebase
-import Search
 
 firebaseConfig = {
     "apiKey": "AIzaSyAGwaYIE3eTwWEkNp_QvmvHpcvUEAvGiIw",
@@ -64,8 +63,7 @@ def timelocated(name, cap):
     personname = db.child("idTable").order_by_key().equal_to(name).get()
     for person in personname.each():
         studentname = person.val()['Name']
-
-    data = {'Name': studentname, 'Location': [camname.get(caplist.get(cap)),  datenow,  timenow]}
+    data = {'Name': studentname, 'Location': [camname.get(caplist.get(cap)), datenow, timenow, str(caplist.get(cap))]}
     db.child("csvTable").child(name).set(data)
     user = db.child("csvTable").get()
     users = user.val()
@@ -75,7 +73,7 @@ def timelocated(name, cap):
             val = True
 
     if val == True:
-        db.child("csvTable").child(name).update({"Location" :[ camname.get(caplist.get(cap)) , datenow , timenow] })
+        db.child("csvTable").child(name).update({"Location" :[ camname.get(caplist.get(cap)) , datenow , timenow ,str(caplist.get(cap))] })
     else:
         val =False
 
