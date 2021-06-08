@@ -1,7 +1,7 @@
 import pyrebase
 import urllib
 import sys
-import Search
+
 
 firebaseConfig = {
     "apiKey": "AIzaSyAGwaYIE3eTwWEkNp_QvmvHpcvUEAvGiIw",
@@ -20,7 +20,6 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 
 db = firebase.database()
 storage = firebase.storage()
-import Search
 
 #TO DOWNLOAD STORAGE DIRECTORY
 #path = "DownloadImages"
@@ -32,21 +31,26 @@ import Search
 #    except:
 #       print('Images Downloaded')
 
+#download
+#photo_download = input("enter the name of the file to be downloaded : ")
+#storage.child("ImageSourceDirectory").child(photo_download).download("",photo_download)
+#storage.child("ImageSourceDirectory").child(photo_download).download(filename="umeed",path=os.path.basename(photo_download))
+
+#nai
 #RETURN VALUE TO SEARCH AND RESULT PAGE
-def returnValues():
+
+
+
+from Search import *
+def returnValues(id):
     flag = False
     result = db.child("csvTable").get()
     for res in result.each():
-        if res.key() == "0206cs181177":
+        if res.key() == id:
             flag = True
-            result_name = res.val()['Name']
-            result_loc = res.val()['Location'][0]
-            result_date = res.val()['Location'][1]
-            result_time = res.val()['Location'][2]
+    return flag
 
-    print(result_name, result_loc, result_date, result_time)
-    print(flag)
-returnValues()
+
 
 # INSERT DATA db
 # data={'result_name':"PRIYANSH VERMA",'result_cam_id':"0",'result_time':"08:59:20",'result_loc':"Local Place",'result_date':"2021-06-05"}

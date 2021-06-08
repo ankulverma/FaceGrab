@@ -4,7 +4,7 @@ import face_recognition
 import os
 import datetime
 
-path = 'Faces'
+path = 'ImageSourceDirectory'
 images = []
 classRollnos = []
 myList = os.listdir(path)
@@ -42,7 +42,7 @@ def timelocated(name, cap):
             now = datetime.datetime.now()
             datenow = now.strftime('%Y-%m-%d')
             timenow = now.strftime('%I:%M:%S')
-            f.writelines(f'\n{name}  , {timenow}  , {camname.get(caplist.get(cap))} , {datenow}')
+            f.writelines(f'\n{name}  , {timenow}  ,  {camname.get(caplist.get(cap))}  ,  {datenow}, {str(caplist.get(cap))}')
 
 encodeListKnown = findEncodings(images)
 print("[INFO: Encodings Completed]")

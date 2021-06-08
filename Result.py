@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
 
 class Ui_ResultPage(object):
 
@@ -9,8 +10,7 @@ class Ui_ResultPage(object):
         self.ui.setupUi(self.window)
         self.window.show()
 
-    def setupUi(self, Dialog):
-        from Search import Ui_SearchPage
+    def setupUi(self, Dialog,name,date,time,loc,cam_id):
         Dialog.setObjectName("Dialog")
         Dialog.resize(700, 700)
         Dialog.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -49,8 +49,12 @@ class Ui_ResultPage(object):
         self.label_6.setObjectName("label_6")
         self.result_name = QtWidgets.QLabel(Dialog)
         self.result_name.setGeometry(QtCore.QRect(230, 200, 201, 16))
-        self.result_name.setText("")
+        font = QtGui.QFont()
+        font.setFamily("Arial Rounded MT Bold")
+        font.setPointSize(12)
+        self.result_name.setFont(font)
         self.result_name.setObjectName("result_name")
+        self.result_name.setText(name)
         self.label_8 = QtWidgets.QLabel(Dialog)
         self.label_8.setGeometry(QtCore.QRect(400, 520, 55, 16))
         font = QtGui.QFont()
@@ -86,8 +90,12 @@ class Ui_ResultPage(object):
 
         self.result_cam_id = QtWidgets.QLabel(Dialog)
         self.result_cam_id.setGeometry(QtCore.QRect(190, 480, 161, 16))
-        self.result_cam_id.setText("")
+        font = QtGui.QFont()
+        font.setFamily("Arial Rounded MT Bold")
+        font.setPointSize(12)
+        self.result_cam_id.setFont(font)
         self.result_cam_id.setObjectName("result_cam_id")
+        self.result_cam_id.setText(cam_id)
         self.label_3 = QtWidgets.QLabel(Dialog)
         self.label_3.setGeometry(QtCore.QRect(390, 100, 181, 41))
         font = QtGui.QFont()
@@ -120,23 +128,34 @@ class Ui_ResultPage(object):
 "")
         self.back.setObjectName("back")
         self.back.clicked.connect(Dialog.close)
-        self.back.clicked.connect(self.openWindow)
 
         self.result_date = QtWidgets.QLabel(Dialog)
         self.result_date.setGeometry(QtCore.QRect(480, 520, 161, 16))
-        self.result_date.setText("")
+        font = QtGui.QFont()
+        font.setFamily("Arial Rounded MT Bold")
+        font.setPointSize(12)
+        self.result_date.setFont(font)
         self.result_date.setObjectName("result_date")
+        self.result_date.setText(date)
         self.result_time = QtWidgets.QLabel(Dialog)
         self.result_time.setGeometry(QtCore.QRect(480, 480, 161, 16))
-        self.result_time.setText("")
+        font = QtGui.QFont()
+        font.setFamily("Arial Rounded MT Bold")
+        font.setPointSize(12)
+        self.result_time.setFont(font)
         self.result_time.setObjectName("result_time")
+        self.result_time.setText(time)
         self.result_photo = QtWidgets.QGraphicsView(Dialog)
         self.result_photo.setGeometry(QtCore.QRect(230, 250, 201, 191))
         self.result_photo.setObjectName("result_photo")
         self.result_loc = QtWidgets.QLabel(Dialog)
         self.result_loc.setGeometry(QtCore.QRect(190, 520, 161, 16))
-        self.result_loc.setText("")
+        font = QtGui.QFont()
+        font.setFamily("Arial Rounded MT Bold")
+        font.setPointSize(12)
+        self.result_loc.setFont(font)
         self.result_loc.setObjectName("result_loc")
+        self.result_loc.setText(loc)
         self.label_4 = QtWidgets.QLabel(Dialog)
         self.label_4.setGeometry(QtCore.QRect(100, 200, 71, 21))
         font = QtGui.QFont()
@@ -155,6 +174,12 @@ class Ui_ResultPage(object):
         self.label_7.setStyleSheet("color: rgb(47, 67, 195);\n"
 "color: rgb(0, 0, 0);")
         self.label_7.setObjectName("label_7")
+
+        self.result_name.setStyleSheet("color: rgb(255,0,0);\n""")
+        self.result_cam_id.setStyleSheet("color: rgb(255,0,0);\n""")
+        self.result_time.setStyleSheet("color: rgb(255,0,0);\n""")
+        self.result_date.setStyleSheet("color: rgb(255,0,0);\n""")
+        self.result_loc.setStyleSheet("color: rgb(255,0,0);\n""")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
