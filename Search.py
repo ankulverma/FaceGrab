@@ -44,10 +44,7 @@ class Ui_SearchPage(object):
 
         self.window = QtWidgets.QDialog()
         self.ui = Ui_ResultPage()
-        print("Win Created")
-        print(id)
         self.ui.setupUi(self.window,self.result_name,self.result_date,self.result_time,self.result_loc,self.result_cam_id ,id)
-        print("setup ui called")
         self.window.show()
 
     def searchFunc(self):
