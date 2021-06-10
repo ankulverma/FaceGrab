@@ -1,16 +1,16 @@
 import pyrebase
 
 firebaseConfig = {
-    "apiKey": " ",
-    "storageURL": " ",
-    "databaseURL": " ",
-    "authDomain": " ",
-    "projectId": " ",
-    "storageBucket": " ",
-    "messagingSenderId": " ",
-    "appId": " ",
-    "measurementId": " ",
-    "serviceAccount": " "
+    "apiKey": "AIzaSyAGwaYIE3eTwWEkNp_QvmvHpcvUEAvGiIw",
+    "storageURL": "gs://facegrab-c82ff.appspot.com/",
+    "databaseURL": "https://facegrab-c82ff-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    "authDomain": "facegrab-c82ff.firebaseapp.com",
+    "projectId": "facegrab-c82ff",
+    "storageBucket": "facegrab-c82ff.appspot.com",
+    "messagingSenderId": "414897340300",
+    "appId": "1:414897340300:web:39698616f4a6c951fca0a9",
+    "measurementId": "G-0F42EJJR32",
+    "serviceAccount": "facegrabServiceKey.json"
 }
 
 firebase = pyrebase.initialize_app(firebaseConfig)
@@ -28,12 +28,7 @@ storage = firebase.storage()
 #    except:
 #       print('Images Downloaded')
 
-# download photo_download = input("enter the name of the file to be downloaded : ") storage.child(
-# "ImageSourceDirectory").child(photo_download).download("",photo_download) storage.child(
-# "ImageSourceDirectory").child(photo_download).download(filename="umeed",path=os.path.basename(photo_download))
-
 #RETURN VALUE TO SEARCH
-
 from Search import *
 def returnValues(id):
     flag = False
@@ -43,20 +38,69 @@ def returnValues(id):
             flag = True
     return flag
 
+#EMPTY THE csvTable
 #result = db.child("csvTable").get()
 #for res in result.each():
 #    db.child("csvTable").remove()
 
+#db.child("idTable").child("0206ct181100").remove()
 
 # INSERT DATA db
-# data={'result_name':"PRIYANSH VERMA",'result_cam_id':"0",'result_time':"08:59:20",'result_loc':"Local Place",'result_date':"2021-06-05"}
-# db.child("csvTable").child("0206cs181118").set(data)
+# data={'Name':"PRIYANSH VERMA"}
+# db.child("idTable").child("0206cs181118").set(data)
+
+#data1={'Name':"SHUBH AGRAWAL"}
+#db.child("idTable").child("0208cs181100").set(data1)
+
+#data2={'Name':"YOGESH DIXIT"}
+#db.child("idTable").child("0208cs181128").set(data2)
+
+#data3={'Name':"YASH MISHRA"}
+#db.child("idTable").child("0206cs181186").set(data3)
+
+#data4={'Name':"VIDHUSHI CHOUBEY"}
+#db.child("idTable").child("0206cs181183").set(data4)
+
+#data5={'Name':"RITIKA TRIVEDI"}
+#db.child("idTable").child("0206cs181130").set(data5)
+
+#data6={'Name':"PURVI ANAND"}
+#db.child("idTable").child("0206cs181119").set(data6)
+
+#data7={'Name':"PRAVEEN TIWARI"}
+#db.child("idTable").child("0206cs181116").set(data7)
+
+#data8={'Name':"PRACHI GUJAR"}
+#db.child("idTable").child("0206cs181108").set(data8)
+
+#data9={'Name':"NEHA NORIYA"}
+#db.child("idTable").child("0206cs181096").set(data9)
+
+#data10={'Name':"NEHA DWIVEDI"}
+#db.child("idTable").child("0206cs181094").set(data10)
+
+#data11={'Name':"MOHIT HIRDE"}
+#db.child("idTable").child("0206cs181086").set(data11)
+
+#data12={'Name':"KRATIKA VYAS"}
+#db.child("idTable").child("0206cs181079").set(data12)
+
+#data13={'Name':"KAUSHIKIE SHRIVASTAVAA"}
+#db.child("idTable").child("0206cs181077").set(data13)
+
+#data14={'Name':"ARPIT PHILLAURA"}
+#db.child("idTable").child("0206cs181030").set(data14)
+
+#data15={'Name':"APURVA SHRIVASTAVA"}
+#db.child("idTable").child("0206cs181029").set(data15)
+
+
 
 # GET DATA db
-# print("Realtime DB")
-# result=db.get()
-# for res in result.each():
-#    print(res.val())
+#print("Realtime DB")
+#result=db.child("idTable").get()
+#for res in result.each():
+#    print(res.key())
 
 # UPLOAD FILE storage
 # file=input("Name of file") #local

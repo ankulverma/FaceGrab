@@ -13,7 +13,7 @@ for cl in myList:
     curImg = cv2.imread(f'{path}/{cl}')
     images.append(curImg)
     classRollnos.append(os.path.splitext(cl)[0])
-#print("[INFO: ImageSourceDirectory","Count=",len(myList),",ID's=",classRollnos,"]")
+print("[INFO: ImageSourceDirectory","Count=",len(myList),",ID's=",classRollnos,"]")
 
 def findEncodings(images):
     encodeList = []
@@ -45,7 +45,7 @@ def timelocated(name, cap):
             f.writelines(f'\n{name}  , {timenow}  ,  {camname.get(caplist.get(cap))}  ,  {datenow}, {str(caplist.get(cap))}')
 
 encodeListKnown = findEncodings(images)
-#print("[INFO: Encodings Completed]")
+print("[INFO: Encodings Completed]")
 
 index = 0  # starting index for the cameras : 0 being the webcam
 getcam = []  # empty list for the camera indexing
@@ -70,7 +70,7 @@ for value in getcam:
         print('Warning: unable to open video source: ', value)
     else:
         caplist[current] = value
-#print("[INFO:",caplist,"]")
+print("[INFO:",caplist,"]")
 
 # The above code generates a dictionary with key as the name of the current
 # stream of video capture with the index from getcam as a value
@@ -96,16 +96,19 @@ while True:
             if matches[matchIndex]:
 
                 name = classRollnos[matchIndex].upper()
-                #cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
-                #y = top - 15 if top - 15 > 15 else top + 15
-                #cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
+                cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
+                y = top - 15 if top - 15 > 15 else top + 15
+                cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,
+                            0.75, (0, 255, 0), 2)
                 timelocated(name, cap)
 
             else:
-                #name = "Unknown"
-                #cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
-                #y = top - 15 if top - 15 > 15 else top + 15
-                #cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,0.75, (0, 255, 0), 2)
+                name = "Unknown"
+                cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
+                y = top - 15 if top - 15 > 15 else top + 15
+                cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,
+                            0.75, (0, 255, 0), 2)
 
         cv2.imshow(str(caplist.get(cap)), img)
-        cv2.waitKey(1)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
