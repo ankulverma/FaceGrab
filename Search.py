@@ -3,6 +3,7 @@ from PyQt5.QtGui import QRegExpValidator
 import pyrebase
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
+from Start import mainthread
 
 firebaseConfig = {
     "apiKey": " ",
@@ -35,6 +36,7 @@ class Ui_SearchPage(object):
         result = db.child("csvTable").get()
         for res in result.each():
             if res.key() == id:
+
                 self.result_name=res.val()['Name']
                 self.result_loc=res.val()['Location'][0]
                 self.result_date = res.val()['Location'][1]
@@ -162,11 +164,25 @@ class Ui_SearchPage(object):
 "background-color: rgb(0, 0, 0);\n"
 "color:rgb(255,255,255);\n"
 "")
+
         self.exit.setObjectName("exit")
-        self.exit.clicked.connect(Dialog.close)
+        self.exit.setCheckable(True)
+        self.exit.clicked.connect(self.clickme)
+
+
+
+        #self.exit.clicked.connect(print("thread closed"))
+        #self.exit.clicked.connect(mainthread.join())
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+    def clickme(self):
+        if self.exit.isChecked():
+            print("Thread closed")
+            mainthread.join()
+            Dialog.close()
+
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -181,6 +197,7 @@ class Ui_SearchPage(object):
 
 import imgs_search_rc
 
+
 if __name__ == "__main__":
     import sys
 
@@ -190,3 +207,4 @@ if __name__ == "__main__":
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
+
