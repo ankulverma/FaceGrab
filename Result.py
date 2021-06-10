@@ -146,7 +146,8 @@ class Ui_ResultPage(object):
         self.result_time.setObjectName("result_time")
         self.result_time.setText(time)
         self.result_photo = QtWidgets.QLabel(Dialog)
-        self.result_photo.setGeometry(QtCore.QRect(230, 250, 201, 191))
+        self.result_photo.setGeometry(QtCore.QRect(230, 250, 200, 200))
+        self.result_photo.setStyleSheet("border: 0.5px solid rgb(9, 13, 84);\n")
         self.result_photo.setText("")
         img = "ImageSourceDirectory/" + id + ".jpg"
         self.result_photo.setPixmap(QtGui.QPixmap(img))

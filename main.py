@@ -6,16 +6,16 @@ import datetime
 import pyrebase
 
 firebaseConfig = {
-    "apiKey": " ",
-    "storageURL": " ",
-    "databaseURL": " ",
-    "authDomain": " ",
-    "projectId": " ",
-    "storageBucket": " ",
-    "messagingSenderId": " ",
-    "appId": " ",
-    "measurementId": " ",
-    "serviceAccount": " "
+    "apiKey": "AIzaSyAGwaYIE3eTwWEkNp_QvmvHpcvUEAvGiIw",
+    "storageURL": "gs://facegrab-c82ff.appspot.com/",
+    "databaseURL": "https://facegrab-c82ff-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    "authDomain": "facegrab-c82ff.firebaseapp.com",
+    "projectId": "facegrab-c82ff",
+    "storageBucket": "facegrab-c82ff.appspot.com",
+    "messagingSenderId": "414897340300",
+    "appId": "1:414897340300:web:39698616f4a6c951fca0a9",
+    "measurementId": "G-0F42EJJR32",
+    "serviceAccount": "facegrabServiceKey.json"
 }
 firebase = pyrebase.initialize_app(firebaseConfig)
 

@@ -36,8 +36,8 @@ class Ui_NotFound(object):
         self.okButton.setCursor(QtGui.QCursor(QtCore.Qt.OpenHandCursor))
         self.okButton.setStyleSheet("QPushButton{\n"
 "border-radius : 10;\n"
-"background-color: rgb(9,13,84);\n"
-"color:rgb(249,253,254);\n"
+"background-color: rgb(9, 13, 84);\n"
+"color:rgb(249,253,254);\n"                                    
 "}\n"
 "QPushButton:hover{\n"
 "background-color: rgb(16,108,154);\n"
@@ -53,7 +53,7 @@ class Ui_NotFound(object):
         self.label_bg = QtWidgets.QLabel(Dialog)
         self.label_bg.setGeometry(QtCore.QRect(0, 0, 400, 300))
         self.label_bg.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-                                    "border: 1.5px solid rgb(9,13,84);\n")
+                                    "border: 1.5px solid rgb(9, 13, 84);\n")
         self.label_bg.setText("")
         self.label_bg.setObjectName("label_bg")
         self.label_bg.raise_()
