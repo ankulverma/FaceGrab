@@ -1,18 +1,30 @@
+
 def mainfirebaseinteraction():
     import cv2
     import numpy as np
     import face_recognition
     import os
     import datetime
+    import dlib
     import pyrebase
 
     firebaseConfig = {
-       
+        "apiKey": "AIzaSyAGwaYIE3eTwWEkNp_QvmvHpcvUEAvGiIw",
+        "storageURL": "gs://facegrab-c82ff.appspot.com/",
+        "databaseURL": "https://facegrab-c82ff-default-rtdb.asia-southeast1.firebasedatabase.app/",
+        "authDomain": "facegrab-c82ff.firebaseapp.com",
+        "projectId": "facegrab-c82ff",
+        "storageBucket": "facegrab-c82ff.appspot.com",
+        "messagingSenderId": "414897340300",
+        "appId": "1:414897340300:web:39698616f4a6c951fca0a9",
+        "measurementId": "G-0F42EJJR32",
+        "serviceAccount": "serviceAccountKey.json"
     }
     firebase = pyrebase.initialize_app(firebaseConfig)
 
     db = firebase.database()
     storage = firebase.storage()
+
 
     path = 'ImageSourceDirectory'
     images = []
@@ -100,10 +112,12 @@ def mainfirebaseinteraction():
     while True:
 
         for cap in caplist:
-
-            success, img = cap.read()
-            imgS = cv2.resize(img, (0, 0), None, 1, 1)
-            imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
+            try:
+                success, img = cap.read()
+                imgS = cv2.resize(img, (0, 0), None, 1, 1)
+                imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
+            except cv2.error as error:
+                print("[Error]: {}".format(error))
 
             facesCurFrame = face_recognition.face_locations(imgS)
             encodesCurFrame = face_recognition.face_encodings(imgS, facesCurFrame)
@@ -127,5 +141,8 @@ def mainfirebaseinteraction():
                     y = top - 15 if top - 15 > 15 else top + 15
                     cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,0.75, (0, 255, 0), 2)
 
-            cv2.imshow(str(caplist.get(cap)), img)
+            try:
+                cv2.imshow(str(caplist.get(cap)), img)
+            except cv2.error as error:
+                print("[Error]: {}".format(error))
             cv2.waitKey(1)
