@@ -7,6 +7,7 @@ def mainfirebaseinteraction():
     import pyrebase
 
     firebaseConfig = {
+       
     }
     firebase = pyrebase.initialize_app(firebaseConfig)
 
@@ -115,16 +116,16 @@ def mainfirebaseinteraction():
 
                 if matches[matchIndex]:
                     name = classRollnos[matchIndex]
-                    #cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
-                    #y = top - 15 if top - 15 > 15 else top + 15
-                    #cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,0.75, (0, 255, 0), 2)
+                    cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
+                    y = top - 15 if top - 15 > 15 else top + 15
+                    cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,0.75, (0, 255, 0), 2)
                     timelocated(name, cap)
 
-                #else:
-                    #name = "Unknown"
-                    #cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
-                    #y = top - 15 if top - 15 > 15 else top + 15
-                    #cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,0.75, (0, 255, 0), 2)
+                else:
+                    name = "Unknown"
+                    cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
+                    y = top - 15 if top - 15 > 15 else top + 15
+                    cv2.putText(img, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,0.75, (0, 255, 0), 2)
 
-            #cv2.imshow(str(caplist.get(cap)), img)
-            #cv2.waitKey(1)
+            cv2.imshow(str(caplist.get(cap)), img)
+            cv2.waitKey(1)
